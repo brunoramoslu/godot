@@ -115,6 +115,11 @@ static String unescape_cmdline(const String& p_str) {
 #define MAIN_PRINT(m_txt)
 #endif
 
+void Main::print_version() {
+
+	OS::get_singleton()->print(VERSION_FULL_NAME" (c) 2008-2015 Juan Linietsky, Ariel Manzur.\n");
+}
+
 void Main::print_help(const char* p_binary) {
 
 	OS::get_singleton()->print(VERSION_FULL_NAME" (c) 2008-2015 Juan Linietsky, Ariel Manzur.\n");
@@ -278,6 +283,10 @@ Error Main::setup(const char *execpath,int argc, char *argv[],bool p_second_phas
 			
 			goto error;
 			
+		} else if (I->get()=="--version") { // resolution
+			
+			print_version();
+			return OK;
 			
 		} else if (I->get()=="-r") { // resolution
 		
